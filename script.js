@@ -29,8 +29,6 @@ function drawFood(){
 	context.fillRect(food.x, food.y, box, box);
 }
 
-
-
 document.addEventListener('keydown', update);
 
 function update	(event){
@@ -47,6 +45,12 @@ function iniciarJogo(){
 	if (snake[0].y > 15 * box && direction == "down") snake[0].y=0;
 	if (snake[0].y < 0 && direction == "up") snake[0].y = 16* box;
 
+	for (i = 1; i < snake.length; i++){ // loop começa com 1 porque é a partir da cabeça que conta agora
+		if (snake[0].x == snake[i].x && snake [0].y == snake[i].y){
+			clearInterval(jogo);
+			alert("você perdeu! =(");
+		}
+	}
 	criarBG();
 	criarCobrinha();
 	drawFood();
